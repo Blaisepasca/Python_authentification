@@ -1,11 +1,13 @@
-from flask import Flask , render_template , request,  redirect
+from flask import Flask , render_template , request,  redirect, session , url_for
 
 app = Flask(__name__)
 
 
 
 @app.route("/")
-def index():
+def home():
+    if"username" in session :
+        return redirect(url_for('dashboard'))
     return render_template("index.html")
 
 
