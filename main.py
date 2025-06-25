@@ -68,4 +68,13 @@ def dashboard():
         return redirect(url_for("home"))
     return render_template("dashboard.html", username=session["username"])
 
+# Logout route
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect(url_for("home"))
 
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()  # Create tables if not exist
+    app.run(debug=True)
